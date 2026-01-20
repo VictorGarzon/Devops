@@ -11,3 +11,12 @@ lint_job:
   script:
     - echo "ejecutando flake8"
     - flake8
+#analisis
+security_job:
+  stage: security
+  image: python: 3.12
+  before_script:
+    - pip install bandit
+  script:
+    - echo "ejecutando analisis de seguridad bandit" 
+    - bandit -r . --skip B101  
