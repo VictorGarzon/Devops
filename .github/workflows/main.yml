@@ -1,0 +1,13 @@
+stages:
+  - lint
+  - security
+  - test
+#linter flakeb
+lint_job:
+  stage: lint
+  image: python:3.12
+  before_script:
+    - pip install flake8
+  script:
+    - echo "ejecutando flake8"
+    - flake8
