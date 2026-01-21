@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: python 3.2
 
 # Controls when the workflow will run
 on:
@@ -33,4 +33,22 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo test, and deploy your project.
+          echo test, and deploy your project
+  lint_job:
+  stage: lint
+  image: python:3.12
+  before_script:
+    - pip install flake8
+  script:
+    - echo "ejecutando flake8"
+    - flake8
+#analisis
+security_job:
+  stage: security
+  image: python:3.12
+  before_script:
+    - pip install bandit
+  script:
+    - echo "ejecutando analisis de seguridad bandit" 
+    - bandit -r . --skip B101  
+
